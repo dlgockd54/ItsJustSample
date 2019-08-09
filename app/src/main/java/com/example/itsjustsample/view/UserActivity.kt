@@ -37,7 +37,9 @@ class UserActivity : AppCompatActivity() {
 
         init()
 
-        mUserName = intent.data?.getQueryParameter("repos")
+//        mUserName = intent.data?.getQueryParameter("repos")
+
+        mUserName = "kunny"
 
         mUserName?.let {
             pullGithubUserInfo(it)
@@ -90,7 +92,9 @@ class UserActivity : AppCompatActivity() {
                     override fun onSuccess(t: List<GithubRepo>) {
                         with(mGithubRepoAdapter) {
                             mGithubRepoList.clear()
-                            mGithubRepoList.addAll(t)
+                            mGithubRepoList.addAll(t.sortedByDescending {
+                                it.stargazersCount
+                            })
                             mGithubRepoList.add(0, mOwner)
                             notifyDataSetChanged()
                         }
