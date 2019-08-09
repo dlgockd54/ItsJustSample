@@ -37,9 +37,7 @@ class UserActivity : AppCompatActivity() {
 
         init()
 
-//        mUserName = intent.data?.getQueryParameter("repos")
-
-        mUserName = "kunny"
+        mUserName = intent.data?.getQueryParameter("username")
 
         mUserName?.let {
             pullGithubUserInfo(it)
